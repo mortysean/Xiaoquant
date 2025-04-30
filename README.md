@@ -55,19 +55,19 @@ XiaoquantSystem/
 ## 🚀 Visual Workflow / 可视化流程演示
 
 ### 1. Data Ingestion / 数据拉取
-![Data Ingestion](./docs/images/fa9efa05-fd8e-426f-ac2a-0f9441c573cd.png)
+![Data Ingestion](docs/images/fa9efa05-fd8e-426f-ac2a-0f9441c573cd.png)
 
 ### 2. Factor Computation / 因子计算
-![Factor Computation](./docs/images/b11bf6c6-e6dd-4dd5-b001-bee9083ac29c.png)
+![Factor Computation](docs/images/b11bf6c6-e6dd-4dd5-b001-bee9083ac29c.png)
 
 ### 3. Factor Analysis / 因子分析
-![Factor Alphalens](./docs/images/51a7c40b-c256-4f97-b299-5575bd80ea7a.png)
-![IC Chart](./docs/images/c64e61d3-e6a6-4590-90e0-44a885cfd18d.png)
-![Factor Score](./docs/images/387711e8-1cd7-4ae1-b45b-b599c30d2f10.png)
+![Factor Alphalens](docs/images/51a7c40b-c256-4f97-b299-5575bd80ea7a.png)
+![IC Chart](docs/images/c64e61d3-e6a6-4590-90e0-44a885cfd18d.png)
+![Factor Score](docs/images/387711e8-1cd7-4ae1-b45b-b599c30d2f10.png)
 
 ### 4. GPT Report Generation / AI 分析报告
-![GPT Summary](./docs/images/8075411f-0a1c-44de-932a-5435a32efe88.png)
-![PDF Report Example](./docs/images/c1e28d4d-8584-4ae2-8533-b98e0eea0af8.png)
+![GPT Summary](docs/images/8075411f-0a1c-44de-932a-5435a32efe88.png)
+![PDF Report Example](docs/images/c1e28d4d-8584-4ae2-8533-b98e0eea0af8.png)
 
 ---
 
