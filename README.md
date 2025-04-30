@@ -1,4 +1,4 @@
-# 📘 XiaoquantSystem / 小宽量化
+![image](https://github.com/user-attachments/assets/676c0845-9c8b-4452-8ec2-61835e79dc0c)# 📘 XiaoquantSystem / 小宽量化
 
 **XiaoquantSystem（小宽量化）** is a modular, scalable, and AI-assisted factor mining framework for quantitative research and portfolio construction.  
 **小宽量化**是一个模块化、可扩展并结合 GPT 智能分析的量化因子挖掘与组合评估平台，旨在服务于金融科研人员与量化实盘开发者。
@@ -55,19 +55,19 @@ XiaoquantSystem/
 ## 🚀 Visual Workflow / 可视化流程演示
 
 ### 1. Data Ingestion / 数据拉取
-![Data Ingestion](./fa9efa05-fd8e-426f-ac2a-0f9441c573cd.png)
+![Data Ingestion](./docs/images/fa9efa05-fd8e-426f-ac2a-0f9441c573cd.png)
 
 ### 2. Factor Computation / 因子计算
-![Factor Computation](./b11bf6c6-e6dd-4dd5-b001-bee9083ac29c.png)
+![Factor Computation](./docs/images/b11bf6c6-e6dd-4dd5-b001-bee9083ac29c.png)
 
 ### 3. Factor Analysis / 因子分析
-![Factor Alphalens](./51a7c40b-c256-4f97-b299-5575bd80ea7a.png)
-![IC Chart](./c64e61d3-e6a6-4590-90e0-44a885cfd18d.png)
-![Factor Score](./387711e8-1cd7-4ae1-b45b-b599c30d2f10.png)
+![Factor Alphalens](./docs/images/51a7c40b-c256-4f97-b299-5575bd80ea7a.png)
+![IC Chart](./docs/images/c64e61d3-e6a6-4590-90e0-44a885cfd18d.png)
+![Factor Score](./docs/images/387711e8-1cd7-4ae1-b45b-b599c30d2f10.png)
 
 ### 4. GPT Report Generation / AI 分析报告
-![GPT Summary](./8075411f-0a1c-44de-932a-5435a32efe88.png)
-![PDF Report Example](./c1e28d4d-8584-4ae2-8533-b98e0eea0af8.png)
+![GPT Summary](./docs/images/8075411f-0a1c-44de-932a-5435a32efe88.png)
+![PDF Report Example](./docs/images/c1e28d4d-8584-4ae2-8533-b98e0eea0af8.png)
 
 ---
 
