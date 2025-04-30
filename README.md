@@ -55,19 +55,19 @@ XiaoquantSystem/
 ## 🚀 Visual Workflow / 可视化流程演示
 
 ### 1. Data Ingestion / 数据拉取
-![Data Ingestion](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/fa9efa05-fd8e-426f-ac2a-0f9441c573cd.png)
+![Data Ingestion](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/b6b1e869e69fe8236ee417baeefe3f4.png)
 
 ### 2. Factor Computation / 因子计算
-![Factor Computation](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/b11bf6c6-e6dd-4dd5-b001-bee9083ac29c.png)
+![Factor Computation](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/1746006300201.png)
 
 ### 3. Factor Analysis / 因子分析
-![Factor Alphalens](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/51a7c40b-c256-4f97-b299-5575bd80ea7a.png)
-![IC Chart](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/c64e61d3-e6a6-4590-90e0-44a885cfd18d.png)
-![Factor Score](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/387711e8-1cd7-4ae1-b45b-b599c30d2f10.png)
+![Factor Alphalens](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/fe5d7d2a0220e5efc39bfe56645f31b.png)
+![IC Chart](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/9099f24e74c0f4f0a5061b273ea0a7a.png)
+![Factor Score](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/1e38213c536fa86dbd62c0cf9615598.png)
 
 ### 4. GPT Report Generation / AI 分析报告
-![GPT Summary](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/8075411f-0a1c-44de-932a-5435a32efe88.png)
-![PDF Report Example](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/c1e28d4d-8584-4ae2-8533-b98e0eea0af8.png)
+![GPT Summary](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/1746005995646.png)
+![PDF Report Example](https://github.com/mortysean/Xiaoquant/blob/main/docs/images/864026d9cc80c134cb529e0fe9d4216.png)
 
 ---
 
