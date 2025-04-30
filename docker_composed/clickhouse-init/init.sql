@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS event_factors;
+CREATE DATABASE IF NOT EXISTS historical_data;
+

@@ -1,0 +1,164 @@
+version: '3.8'
+
+services:
+  spark-master:
+    image: bitnami/spark:latest
+    container_name: spark-master
+    hostname: spark-master
+    restart: always
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_PORT=7077
+      - SPARK_MASTER_WEBUI_PORT=8080
+      - PYSPARK_PYTHON=/usr/bin/python3  
+      - PYSPARK_DRIVER_PYTHON=/usr/bin/python3
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    volumes:
+      - spark_data:/opt/spark/work-dir
+      - spark_warehouse:/tmp/spark-warehouse  
+
+  spark-worker:
+    image: bitnami/spark:latest
+    container_name: spark-worker
+    hostname: spark-worker
+    restart: always
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=8G  
+      - SPARK_WORKER_CORES=4  
+      - PYSPARK_PYTHON=/usr/bin/python3  
+      - PYSPARK_DRIVER_PYTHON=/usr/bin/python3
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+    volumes:
+      - spark_data:/opt/spark/work-dir
+      - spark_warehouse:/tmp/spark-warehouse  
+
+  spark-history-server:
+    image: bitnami/spark:latest
+    container_name: spark-history-server
+    hostname: spark-history-server
+    restart: always
+    environment:
+      - SPARK_MODE=history-server
+      - SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=file:/tmp/spark-events
+    ports:
+      - "18080:18080"
+    volumes:
+      - spark_events:/tmp/spark-events
+    depends_on:
+      - spark-master
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse
+    hostname: clickhouse
+    restart: always
+    ports:
+      - "8123:8123"  # HTTP 端口
+      - "9000:9000"  # Native TCP 端口
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse  # 数据存储目录
+      - ./clickhouse-init:/docker-entrypoint-initdb.d  # 让容器启动时执行 SQL 语句
+    environment:
+      - CLICKHOUSE_DB=event_factors
+      - CLICKHOUSE_USER=admin
+      - CLICKHOUSE_PASSWORD=admin123
+      
+  jupyter:
+    image: jupyter/pyspark-notebook:latest 
+    container_name: jupyter
+    hostname: jupyter
+    restart: always
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - PYSPARK_PYTHON=/usr/bin/python3
+      - PYSPARK_DRIVER_PYTHON=jupyter
+      - PYSPARK_DRIVER_PYTHON_OPTS="lab --ip=0.0.0.0 --port=8888 --allow-root"
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+
+  fastapi:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.9
+    container_name: fastapi
+    hostname: fastapi
+    restart: always
+    volumes:
+      - ./api:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - clickhouse
+    command: >
+      uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 3
+      start_period: 5s
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    hostname: kafka
+    restart: unless-stopped
+    environment:
+      - KAFKA_NODE_ID=1
+      - KAFKA_LISTENERS=CONTROLLER://:9093,PLAINTEXT://:9092
+      - KAFKA_ADVERTISED_LISTENERS=CONTROLLER://localhost:9093,PLAINTEXT://localhost:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+      - KAFKA_LOG_DIRS=/var/lib/kafka/data
+      - KAFKA_PROCESS_ROLES=controller,broker
+      - KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - CLUSTER_ID=your-cluster-id-here
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+      - ./server.properties:/etc/kafka/kraft/server.properties:ro
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    command:
+      - "sh"
+      - "-c"
+      - |
+        if [ ! -f "/var/lib/kafka/data/meta.properties" ]; then
+          echo "Initializing Kafka with Cluster ID: $CLUSTER_ID"
+          kafka-storage format --ignore-formatted --cluster-id "$CLUSTER_ID" --config /etc/kafka/kraft/server.properties
+        else
+          echo "Kafka storage already formatted. Skipping initialization."
+        fi
+        exec /etc/confluent/docker/run
+        
+volumes:
+  spark_data:
+    driver: local
+  spark_warehouse:
+    driver: local
+  spark_events:
+    driver: local
+  redis_data:
+    driver: local
+  kafka_data:
+    driver: local
+  clickhouse_data:  
+    driver: local
