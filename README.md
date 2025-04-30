@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/676c0845-9c8b-4452-8ec2-61835e79dc0c)# 📘 XiaoquantSystem / 小宽量化
+# 📘 XiaoquantSystem / 小宽量化
 
 **XiaoquantSystem（小宽量化）** is a modular, scalable, and AI-assisted factor mining framework for quantitative research and portfolio construction.  
 **小宽量化**是一个模块化、可扩展并结合 GPT 智能分析的量化因子挖掘与组合评估平台，旨在服务于金融科研人员与量化实盘开发者。
